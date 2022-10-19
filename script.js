@@ -50,33 +50,30 @@ let cartas=[]
 
 
 function DistribCartas(){
-    teste=[]
+    
     shuffleArray(baralhoTodo);
     for (i=0;i<QtdCartas/2;i++){
         board.innerHTML = board.innerHTML + baralhoTodo[i]
     }
-    console.log('teste')
+    baralho = document.querySelectorAll('.memory-card')
+
     DistribCartas2();
-    DistribCartas3();
 }
 function DistribCartas2(){
-    cartasescolhidas = document.querySelectorAll('.memory-card')
-
-    for (i=0;i<cartasescolhidas.length;i++){
-        cartas.push(cartasescolhidas[i])
-}
-    console.log(cartas[0])
-}
-
-function DistribCartas3(){
-    shuffleArray(cartas)
-    for (i=0;i<cartas.length;i++){
-        console.log(cartas[i])
-        board.innerHTML = board.innerHTML + cartas[i]
+    for (i=0;i<QtdCartas/2;i++){
+        cartas.push(baralho[i])
     }
-}
-    
+    for (i=0;i<QtdCartas/2;i++){
+        cartas.push(cartas[i])
+    }
+    shuffleArray(cartas)
+    board.innerHTML=''
+    for (i=0;i<QtdCartas;i++){
+        board.innerHTML = board.innerHTML + '<div class = "memory-card">'+cartas[i].innerHTML+'</div>'     }
 
+    
+}
+       
 
 DistribCartas();
 

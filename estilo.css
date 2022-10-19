@@ -54,6 +54,10 @@ body{
 
 }
 
+.costas{
+    display: none;
+}
+
 @media (max-width: 600px){
     .board{
         flex-direction: column;
