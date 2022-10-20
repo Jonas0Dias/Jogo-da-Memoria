@@ -15,14 +15,10 @@ let board = window.document.querySelector('.board')
 
 // let baralho = ['imagens/drogon.webp', 'imagens/got.jpg', 'imagens/Koala.jpg', 'imagens/porco.jpg', 'imagens/rick.avif', 'imagens/walter.jpeg', 'imagens/driven.jpg']
 
-//Criando uma função para embaralhar o Array
-function comparador() { 
-	return Math.random() - 0.5; 
-}
 
 
 //Criando uma variavel que contém 7 divs com as imagens frente e verso
-const baralhoTodo = ["<div class='memory-card'><img class='frente' src='imagens/drogon.webp'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/got.jpg'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/Koala.jpg'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/porco.jpg'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/rick.jpeg'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/walter.jpeg'><img class='costas' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' src='imagens/driven.jpg'><img class='costas' src='imagens/verso.png'></div>"]
+const baralhoTodo = ["<div class='memory-card'><img class='frente acertou' src='imagens/drogon.webp'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/got.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/Koala.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/porco.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/rick.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/walter.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/driven.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>"]
 
 
 
@@ -76,6 +72,69 @@ function DistribCartas2(){
        
 
 DistribCartas();
+
+function escolher(carta){
+    carta.classList.add('escondido')
+    pegarprimeiracarta();
+    verificarcartas();
+}
+
+CartaCosta = window.document.querySelectorAll('.costas');
+CartaFrente = window.document.querySelectorAll('.frente');
+
+//após clicar na primeira carta, clicar na segunda e verificar se elas são iguais. Se forem, elas devem permanecer viradas até o fim do jogo, se não forem, elas devem voltar a ficar viradas para baixo.
+
+
+
+
+function pegarprimeiracarta(){
+    
+    console.log(cartafrente1)
+
+
+    let cartafrente1;
+    let cartacosta1;
+    for (i=0;i<CartaCosta.length;i++){
+        if (CartaCosta[i].classList.contains('escondido')){
+            // console.log('teste');
+            cartafrente1 = CartaFrente[i];
+            cartacosta1 = CartaCosta[i];
+            // console.log(cartafrente1);
+            // console.log(cartacosta1);
+            break
+       
+        }
+    }
+    console.log(cartafrente1);
+    ;
+}
+// console.log(cartafrente1);
+
+
+
+
+function verificarcartas(){
+    let cartafrente2;
+    let cartacosta2;
+
+    for (i=0;i<CartaCosta.length;i++){
+        if (cartacostas1 !== CartaCosta[i]){
+            cartafrente2 = CartaFrente[i];
+            if(cartafrente1 !== cartafrente2){
+                cartacosta1.classList.remove('escondido')
+                cartacosta2.classList.remove('escondido')
+            }
+            else{
+                cartafrente1.classList.add('acertou')
+                cartafrente2.classList.add('acertou')
+
+            }
+        }
+        
+        pegarprimeiracarta();
+    }
+
+}
 
 
 
