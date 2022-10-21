@@ -22,7 +22,7 @@ body{
 .pag{
     margin: auto;
     margin-top: 40px;
-    margin-bottom: 47px;
+    margin-bottom: 77px;
     height: 100%;
     width: 50%;
     text-align: center;
@@ -32,6 +32,18 @@ body{
     color: #75B79E;
     
     
+}
+
+.timer{
+    position:absolute;
+    right: 50%;
+    top: 115px;
+    border-width: 1px;
+    border-style: solid;
+    font-style: italic;
+    font-family:sans-serif;
+    font-size: 30px;
+
 }
   
 .memory-card{

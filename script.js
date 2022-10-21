@@ -1,3 +1,14 @@
+let cartafrente1=null;
+let cartacosta1=null;
+let cartafrente2=null;
+let cartacosta2=null;
+let carta;
+let contador;
+let limite;
+
+
+
+
 //Criando uma variável para determinar o número de cartas no jogo
 let QtdCartas = 0
 while(QtdCartas%2!==0 || QtdCartas>14 || QtdCartas<4){
@@ -8,17 +19,12 @@ QtdCartas =  parseInt(QtdCartas)
 
 let board = window.document.querySelector('.board')
 
-// let banana;
-// banana = 'teste'
-// let maca
-// maca  = `teste2 ${banana}`
 
-// let baralho = ['imagens/drogon.webp', 'imagens/got.jpg', 'imagens/Koala.jpg', 'imagens/porco.jpg', 'imagens/rick.avif', 'imagens/walter.jpeg', 'imagens/driven.jpg']
 
 
 
 //Criando uma variavel que contém 7 divs com as imagens frente e verso
-const baralhoTodo = ["<div class='memory-card'><img class='frente acertou' src='imagens/drogon.webp'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/got.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/Koala.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/porco.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/rick.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/walter.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente acertou' src='imagens/driven.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>"]
+const baralhoTodo = ["<div class='memory-card'><img class='frente' id='a'  src='imagens/drogon.webp'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='b' src='imagens/got.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='c' src='imagens/Koala.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='d' src='imagens/porco.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='e' src='imagens/rick.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='f' src='imagens/walter.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='g' src='imagens/driven.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>"]
 
 
 
@@ -69,76 +75,138 @@ function DistribCartas2(){
 
     
 }
-       
 
 DistribCartas();
-
-function escolher(carta){
-    carta.classList.add('escondido')
-    pegarprimeiracarta();
-    verificarcartas();
-}
 
 CartaCosta = window.document.querySelectorAll('.costas');
 CartaFrente = window.document.querySelectorAll('.frente');
 
-//após clicar na primeira carta, clicar na segunda e verificar se elas são iguais. Se forem, elas devem permanecer viradas até o fim do jogo, se não forem, elas devem voltar a ficar viradas para baixo.
+let primeiracartaclicada;
 
 
+cartasclicadas=[]
 
-
-function pegarprimeiracarta(){
+function escolher(carta){
+    cartasclicadas.push(carta)
+    carta.classList.add('escondido')
+    if (cartasclicadas.length==2){
+        setTimeout(CompararCartas, 1300);
+    }
     
-    console.log(cartafrente1)
+}
 
 
-    let cartafrente1;
-    let cartacosta1;
+//Preciso identificar agora qual a posição no Nodelist CartasCosta se encontram as cartas cartasclicadas[0] e cartasclicadas[1], pra poder pegar o índice delas e pode descobrir quais cartas de frente são.
+
+
+function CompararCartas(){
     for (i=0;i<CartaCosta.length;i++){
-        if (CartaCosta[i].classList.contains('escondido')){
-            // console.log('teste');
-            cartafrente1 = CartaFrente[i];
-            cartacosta1 = CartaCosta[i];
-            // console.log(cartafrente1);
-            // console.log(cartacosta1);
-            break
-       
+        if (CartaCosta[i] === cartasclicadas[0]){
+            cartafrente1 = CartaFrente[i].id
+            
+    
+        }
+        else if (CartaCosta[i] === cartasclicadas[1]){
+            cartafrente2 = CartaFrente[i].id
+            
         }
     }
-    console.log(cartafrente1);
-    ;
-}
-// console.log(cartafrente1);
-
-
-
-
-function verificarcartas(){
-    let cartafrente2;
-    let cartacosta2;
-
-    for (i=0;i<CartaCosta.length;i++){
-        if (cartacostas1 !== CartaCosta[i]){
-            cartafrente2 = CartaFrente[i];
-            if(cartafrente1 !== cartafrente2){
-                cartacosta1.classList.remove('escondido')
-                cartacosta2.classList.remove('escondido')
-            }
-            else{
-                cartafrente1.classList.add('acertou')
-                cartafrente2.classList.add('acertou')
-
-            }
+    
+    
+        if (cartafrente1 !== cartafrente2) {
+            cartasclicadas[0].classList.remove('escondido')
+            cartasclicadas[1].classList.remove('escondido')
         }
+
+        else if (cartafrente1 == cartafrente2){
+            console.log('acertou')
+        }
+
+        cartasclicadas=[]
+    }
+   
+    contador = 0
+    function contatdor
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//após clicar na primeira carta, clicar na segunda e verificar se elas são iguais. Se forem, elas devem permanecer viradas até o fim do jogo, se não forem, elas devem voltar a ficar viradas para baixo.
+//´só que quando eu clico na segunda carta, eu acabo chamando a função escolher() dnv.. isso faz a segunda carta virar a primeira
+
+
+
+// function pegarprimeiracarta(){
         
-        pegarprimeiracarta();
-    }
+    
 
-}
+    
+        // console.log(cartafrente1)
+        // console.log(cartafrente2)
+        // for (i=0;i<CartaCosta.length;i++){
+        //     if (CartaCosta[i].classList.contains('escondido') && !CartaFrente[i].classList.contains('acertou')){
+        //         // Agr vou pegar a carta que eu cliquei pelo id dela. Cada carta eu coloquei um id diferente, variando de 1 ate 7
+        //         cartafrente1 = CartaFrente[i].id;
+        //         console.log(cartafrente1)
+        //         // console.log(cartafrente1)
+        //         // console.log(i)
+        //         cartacosta1 = CartaCosta[i];
+        //         // console.log(cartacosta1)
+        //         // console.log(cartafrente1);
+        //         // console.log(cartacosta1);
+        //         break
+                
+        
+        //     }
+        // }
+    
+    
+// }
 
 
 
 
+// function verificarcartas(){
+   
+//     console.log(cartafrente1)
+//     for (i=0;i<CartaCosta.length;i++){
+//         if (cartacosta1 !== CartaCosta[i] ){
+//             cartafrente2 = CartaFrente[i];
+//             break
+    //         if(cartafrente1 !== cartafrente2){
+    //             cartacosta1.classList.remove('escondido')
+    //             cartacosta2.classList.remove('escondido')
+    //         }
+    //         else{
+    //             cartafrente1.classList.add('acertou')
+    //             cartafrente2.classList.add('acertou')
 
+    //         }
+    //     }
+    //     // console.log(CartaCosta[i])
+//     }
 
-
+//     }
+// }
