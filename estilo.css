@@ -22,7 +22,7 @@ body{
 .pag{
     margin: auto;
     margin-top: 40px;
-    margin-bottom: 77px;
+    margin-bottom: 50px;
     height: 100%;
     width: 50%;
     text-align: center;
@@ -33,16 +33,19 @@ body{
     
     
 }
+h1{
+    line-height: 80px;
+}
 
 .timer{
-    position:absolute;
-    right: 50%;
-    top: 115px;
+    padding: 10px;
+    margin-top: 10px;
     border-width: 1px;
     border-style: solid;
     font-style: italic;
     font-family:sans-serif;
     font-size: 30px;
+    color: crimson;
 
 }
   
@@ -53,7 +56,7 @@ body{
     position: relative;
     box-sizing:border-box;
     padding: 5px;
-    transition: all 2s linear ;
+    transition: all 0.5s linear ;
     /* background-color: blue; */
     /* transform: rotateY(180deg); */
     /* perspective: 1000px; */
@@ -85,7 +88,7 @@ body{
 }
 
 .aparecido{
-    
+
 }
 
 

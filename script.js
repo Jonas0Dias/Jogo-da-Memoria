@@ -88,13 +88,12 @@ let primeiracartaclicada;
 cartasclicadas=[]
 
 function escolher(carta){
-    setInterval(contar, 1000);
     cartasclicadas.push(carta)
     carta.classList.add('escondido')
     if (cartasclicadas.length==2){
         clicks = clicks +2
         console.log(clicks)
-        setTimeout(CompararCartas, 1300);
+        setTimeout(CompararCartas, 700);
     }
     
 }
@@ -143,7 +142,7 @@ function CompararCartas(){
         
     }
 
-
+    setInterval(contar, 1000);
 
 
 
