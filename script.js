@@ -5,7 +5,7 @@ let cartacosta2=null;
 let carta;
 let contador;
 let limite;
-
+let clicks=0
 
 
 
@@ -24,7 +24,7 @@ let board = window.document.querySelector('.board')
 
 
 //Criando uma variavel que contém 7 divs com as imagens frente e verso
-const baralhoTodo = ["<div class='memory-card'><img class='frente' id='a'  src='imagens/drogon.webp'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='b' src='imagens/got.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='c' src='imagens/Koala.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='d' src='imagens/porco.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='e' src='imagens/rick.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='f' src='imagens/walter.jpeg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='g' src='imagens/driven.jpg'><img class='costas' onclick = 'escolher(this)' src='imagens/verso.png'></div>"]
+const baralhoTodo = ["<div class='memory-card'><img class='frente' id='a'  src='imagens/drogon.webp'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='b' src='imagens/got.jpg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='c' src='imagens/Koala.jpg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='d' src='imagens/porco.jpg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='e' src='imagens/rick.jpeg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='f' src='imagens/walter.jpeg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>", "<div class='memory-card'><img class='frente' id='g' src='imagens/driven.jpg'><img class='costas aparecido' onclick = 'escolher(this)' src='imagens/verso.png'></div>"]
 
 
 
@@ -80,6 +80,7 @@ DistribCartas();
 
 CartaCosta = window.document.querySelectorAll('.costas');
 CartaFrente = window.document.querySelectorAll('.frente');
+contador = document.querySelector('.timer')
 
 let primeiracartaclicada;
 
@@ -87,9 +88,12 @@ let primeiracartaclicada;
 cartasclicadas=[]
 
 function escolher(carta){
+    setInterval(contar, 1000);
     cartasclicadas.push(carta)
     carta.classList.add('escondido')
     if (cartasclicadas.length==2){
+        clicks = clicks +2
+        console.log(clicks)
         setTimeout(CompararCartas, 1300);
     }
     
@@ -119,14 +123,25 @@ function CompararCartas(){
         }
 
         else if (cartafrente1 == cartafrente2){
-            console.log('acertou')
+            console.log(cartasclicadas[0])
+            cartasclicadas[0].classList.remove('aparecido')
+            cartasclicadas[1].classList.remove('aparecido')
         }
 
         cartasclicadas=[]
-    }
+        // AQUI EU QUERO VER QUE SE EU VIREI TODAS AS CARTAS, ENTÃO NENHUMA MAIS TEM A CLASSE 'APARECIDO'. QUERO SUAR ESSA INFORMAÇÃO PARA FINALIZAR O JOGO
+        if (document.querySelectorAll('.aparecido').length==0){
+            alert(`Você ganhou em ${clicks} jogadas!`)
+        }
+}
    
-    contador = 0
-    function contatdor
+    tempo = 0
+    function contar(){
+        tempo++
+        // console.log(tempo)
+        contador.innerHTML = (`Tempo: ${tempo}`)
+        
+    }
 
 
 
@@ -209,4 +224,3 @@ function CompararCartas(){
 //     }
 
 //     }
-// }
