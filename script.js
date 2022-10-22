@@ -92,7 +92,6 @@ function escolher(carta){
     carta.classList.add('escondido')
     if (cartasclicadas.length==2){
         clicks = clicks +2
-        console.log(clicks)
         setTimeout(CompararCartas, 700);
     }
     
@@ -122,7 +121,7 @@ function CompararCartas(){
         }
 
         else if (cartafrente1 == cartafrente2){
-            console.log(cartasclicadas[0])
+            
             cartasclicadas[0].classList.remove('aparecido')
             cartasclicadas[1].classList.remove('aparecido')
         }
@@ -130,7 +129,15 @@ function CompararCartas(){
         cartasclicadas=[]
         // AQUI EU QUERO VER QUE SE EU VIREI TODAS AS CARTAS, ENTÃO NENHUMA MAIS TEM A CLASSE 'APARECIDO'. QUERO SUAR ESSA INFORMAÇÃO PARA FINALIZAR O JOGO
         if (document.querySelectorAll('.aparecido').length==0){
-            alert(`Você ganhou em ${clicks} jogadas!`)
+            alert(`Você ganhou em ${clicks} jogadas num tempo de ${tempo} segundos!`)
+            jogarnovamente = prompt("Deseja jogar novamente?")
+            if (jogarnovamente ==='sim'){
+                alert('foda-se')
+            }
+
+            else{
+                alert('foda-se')
+            }
         }
 }
    
@@ -139,10 +146,13 @@ function CompararCartas(){
         tempo++
         // console.log(tempo)
         contador.innerHTML = (`Tempo: ${tempo}`)
+        if (document.querySelectorAll('.aparecido').length==0){
+            clearInterval(variavel)
+        }
         
     }
 
-    setInterval(contar, 1000);
+    const variavel = setInterval(contar, 1000);
 
 
 

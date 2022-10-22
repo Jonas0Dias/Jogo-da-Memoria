@@ -55,8 +55,10 @@ h1{
     display: flex;
     position: relative;
     box-sizing:border-box;
-    padding: 5px;
+    /* padding: 5px; */
+    margin-bottom: 7px;
     transition: all 0.5s linear ;
+    
     /* background-color: blue; */
     /* transform: rotateY(180deg); */
     /* perspective: 1000px; */
@@ -79,6 +81,7 @@ h1{
     height: 100%;
     position:absolute;
     /* backface-visibility: hidden; */
+    border-radius: 10%;
 
 }
 
