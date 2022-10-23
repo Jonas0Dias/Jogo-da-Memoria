@@ -57,12 +57,16 @@ h1{
     box-sizing:border-box;
     /* padding: 5px; */
     margin-bottom: 7px;
-    transition: all 0.5s linear ;
+    transition: all 0.5s linear;
     
     /* background-color: blue; */
     /* transform: rotateY(180deg); */
     /* perspective: 1000px; */
     
+}
+
+.travarboard{
+    pointer-events: none;
 }
 
 .memory-card:hover {

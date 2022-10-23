@@ -93,6 +93,7 @@ function escolher(carta){
     if (cartasclicadas.length==2){
         clicks = clicks +2
         setTimeout(CompararCartas, 700);
+        // document.getElementsByClassName('memory-card').classList.add('travarboard')
     }
     
 }
@@ -130,15 +131,24 @@ function CompararCartas(){
         // AQUI EU QUERO VER QUE SE EU VIREI TODAS AS CARTAS, ENTÃO NENHUMA MAIS TEM A CLASSE 'APARECIDO'. QUERO SUAR ESSA INFORMAÇÃO PARA FINALIZAR O JOGO
         if (document.querySelectorAll('.aparecido').length==0){
             alert(`Você ganhou em ${clicks} jogadas num tempo de ${tempo} segundos!`)
+            jogardenovo();
+        function jogardenovo(){
             jogarnovamente = prompt("Deseja jogar novamente?")
             if (jogarnovamente ==='sim'){
-                alert('foda-se')
+                window.location.reload(true);
+
+            }
+
+            else if(jogarnovamente ==='não'){
+                alert("Obrigado por jogar!")
             }
 
             else{
-                alert('foda-se')
+                alert('Digite apenas sim ou não')
+                jogardenovo();
             }
         }
+    }
 }
    
     tempo = 0
