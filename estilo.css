@@ -105,6 +105,10 @@ h1{
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        
+    }
+
+    .memory-card{
         margin-bottom: 7px;
     }
 }
